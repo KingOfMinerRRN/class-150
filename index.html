@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+</head>
+
+<body>
+  <a-scene background="color:white">
+
+    <a-camera position="0 8 20"></a-camera>
+
+    <!-------------------------------------------Asset Management------------------------------------------->
+    <a-assets timeout="10000">
+
+      
+      <a-asset-item id="tree" src="./models/tree/scene.gltf"></a-asset-item> 
+      
+      <img id="bg" src="./images/sky.jpg">
+      <a-asset-item id = "train-obj" src = "./models3/tinker.obj"></a-asset-item>
+      <a-asset-item id = "train-mtl" src = "./models3/obj.mtl"></a-asset-item>
+
+    </a-assets>
+
+    <a-sky src="#bg"></a-sky>
+
+    <!-------------------------------------Lights in the scene----------------------------------------------->
+
+    <!--Ambient-->
+    <a-entity light = "type: ambient;intensity: 0.5;"></a-entity>
+
+
+    <!--Directional-->
+    <a-entity animation = "property:rotation;to:0 360 0;easing:linear;loop:true;dur:50000;">
+      <a-entity light = "type: directional;castShadow: true;intensity: 5;distance: 50;decay: 2;color:white"position = "-100 20 20"></a-entity>
+    </a-entity>
+    
+    <!-------------------------------------Circular Plane----------------------------------------------->
+
+    <a-circle position="-0.4 -0.76 -25" rotation="-90 0 0" radius="100" shadow="receive: true" visible="true"
+      color="#2E6F10">
+    </a-circle>
+
+    <!--------------------------------------GLTF Models----------------------------------------------------------->
+
+    
+    
+    <!--Add Code here-->
+    <a-entity>
+      <a-entity position="-1 2 0" rotation="0 55 0" scale="0.02 0.02 0.02" gltf-model="#tree" shadow="cast: true;recieve:false;">
+      </a-entity>
+    </a-entity>
+
+    <a-entity obj-model="obj:#train-obj;mtl:#train-mtl"position = "-1 2 5" scale = "0.1 0.1 0.1" rotation = "-90 180 0"></a-entity>
+
+    
+    <!--------------------------------------END----------------------------------------------------------->
+  </a-scene>
+</body>
+
+</html>
